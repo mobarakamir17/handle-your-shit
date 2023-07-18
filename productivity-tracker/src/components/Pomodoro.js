@@ -1,60 +1,74 @@
 import React, { useState, useEffect,} from "react";
 function Pomodoro() {
-const [minutes, setMinutes] = useState(0);
+const [minutes, setMinutes] = useState(25);
 const [seconds, setSeconds] = useState(0);
 const [displayMessage, setDisplayMessage] = useState(false);
 const [active, setActive] = useState(true)
-const [minutesBreak, setMinutesBreak] = useState(0)
+const [working, setWorking] = useState(true);
+const [breakTimer, setBreakTimer] = useState(false)
+const [minutesBreak, setMinutesBreak] = useState(5)
 const [secondsBreak, setSecondsBreak] = useState(0)
 function handleButton() {
     setActive(!active);
+    setWorking(true)
+    setBreakTimer(false);
 }
 function handleOptionChange(event) {
     const selectedOption = event.target.value;
     if (selectedOption === "Easy") {
+        setDisplayMessage(false)
         setMinutes(10);
-        setSeconds(0);
+        setSeconds(0)
         setMinutesBreak(2)
-        setSecondsBreak(0);
+        setSecondsBreak(0)
     } else if (selectedOption === "Normal") {
-        setMinutes(20)
+        setDisplayMessage(false)
+        setMinutes(25)
         setSeconds(0)
         setMinutesBreak(5)
         setSecondsBreak(0)
     }else if (selectedOption === "Hard") {
+        setDisplayMessage(false)
         setMinutes(60)
         setSeconds(0)
         setMinutesBreak(10)
         setSecondsBreak(0)
-    }else if (selectedOption === "Example") {
-        setMinutes(0)
-        setSeconds(5)
-        setMinutesBreak(0)
-        setSecondsBreak(10)
     }
+    setWorking(true);
+    setBreakTimer(false);
+    setDisplayMessage(false);
+    setActive(true);
 }
-let interval= null;
 useEffect(() => {
-
-if(!active) {
-    const interval = setInterval(() => {
-        setMinutes(minutes)
-        setSeconds(seconds)
-        if (seconds === 0)
-            if (minutes !== 0) {
-                setSeconds(59);
-                setMinutes(minutes - 1);
-                } else {
-                setDisplayMessage(!displayMessage);
-                setMinutes(minuteBreak)
+let interval = null;
+if(active) {
+    clearInterval(interval);
+} else {
+    interval = setInterval(() => {
+        if (minutes === 0 && seconds === 0) {
+                if (working) {
+                setWorking(false);
+                 if (setBreakTimer(true))
+                setMinutes(minutesBreak);
                 setSeconds(secondsBreak);
+                setDisplayMessage(true)
                 } else {
-                setSeconds(seconds - 1);
+                setWorking(true);
+                if (setBreakTimer(false))  {
+                setMinutes(minutes)
+                setSeconds(seconds);
+                setDisplayMessage(false)}
                 }
-                clearInterval(interval)
+            } else if (seconds === 0) {
+                setMinutes(minutes - 1)
+                setSeconds(59)
+                } else {
+                setSeconds(seconds - 1)
+                }
             },1000)
         }
-},[seconds,minutes, active, minutesBreak, secondsBreak]);
+    return () => clearInterval(interval)
+},[minutes, seconds, active]);
 
 
 const timerMinutes = minutes <  10 ?`0${minutes}`:minutes;
@@ -68,26 +82,29 @@ function handleWorkTimer() {
     setIsWorkTimer(true);
     setIsBreakTimer(false);
 }
-function handleBreakTimer() {
-    setIsWorkTimer(false);
-    setIsBreakTimer(true);
+function handleReset() {
+    setWorking(true);
+    setBreakTimer(false);
+    setDisplayMessage(false);
+    setActive(true);
+
+    setMinutes(25);
+    setSeconds(0);
+
 }
 return  (
         
 <div className="pomodoro">
     <div className="headerOptions">
             <button onClick={handleWorkTimer}>Work Timer</button>
-            <button onClick={handleBreakTimer}>Break Timer</button>
+            <button onClick={handleReset}>Reset</button>
             <button>Settings</button>
     </div>
     <div className="message">
-            <div>{displayMessage ? "Break Time! New Session Starts in:" : null}</div>
+            <div>{displayMessage ? "Break Time!" : "Work Time!"}</div>
     </div>
     {isWorkTimer ? <div className="timer">
         {timerMinutes} : {timerSeconds}
-    </div> : null}
-    {isBreakTimer ? <div className="timer">
-        {minutesBreak} : {secondsBreak}
     </div> : null}
     <div id = "timerButtons">
         <button className="Start" onClick={handleButton}>{active ? "Start" : "Stop"}</button>
@@ -96,7 +113,6 @@ return  (
     {/*break ternary operator*/}
     <label className="selectOptions">Select options</label>
         <select onChange={handleOptionChange} defaultValue="Normal">
-            <option value="Example">Example Mode 5sec:10sec</option>
             <option value="Easy">Easy Mode</option>
             <option value="Normal">Normal Mode</option>
             <option value= "Hard">Hard Mode</option>
