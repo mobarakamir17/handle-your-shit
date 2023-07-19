@@ -6,11 +6,11 @@ import ToDoList from './components/ToDoList';
 import CompletedTasks from './components/CompletedTasks'; // Make sure the import uses the correct path
 import Calendar from './components/Calendar'; 
 
-function Container() {
+function Container({tasks, onAddToDo, onSetCompletedItems}) {
   return (
     <div className="container">
       <Pomodoro />
-      <ToDoList />
+      <ToDoList onSetCompletedItems= {onSetCompletedItems} completedItems= {[]} tasks={tasks} onAddToDo={onAddToDo} />
     </div>
   );
 }
@@ -26,29 +26,35 @@ function App() {
       .then((tasks) => setUsersList(tasks))
       .catch((error) => console.log(error));
     
-    fetch("http://localhost:8003/completed-items")
-      .then((res) => res.json())
-      .then((items) => setCompletedItems(items))
-      .catch((error) => console.log(error));
+    // fetch("http://localhost:8003/completed-items")
+    //   .then((res) => res.json())
+    //   .then((items) => setCompletedItems(items))
+    //   .catch((error) => console.log(error));
   }, []);
 
   const addNewTask = (text) => {
+    console.log(text)
     setUsersList([...usersList, { text, checked: false }]);
   };
-console.log(addNewTask)
   return (
     <div className="App">
       <Router>
         <Header />
-        <Link to="/completed-items" className="linkStyle">
-          Completed Items
-        </Link>
+        <div className="navigation">
+          <Link to="/" className="linkStyle homeLink">
+            Home
+          </Link>
+          <span className="navSeparator"> </span> {/* Add an empty element */}
+          <Link to="/completed-items" className="linkStyle">
+            Completed Items
+          </Link>
+        </div>
 
         <Routes>
-          <Route path="/" element={<Container />} />
+          <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask}/>} />
           <Route
             path="/"
-            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} />}
+            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems}/>}
           />
           <Route
             path="/completed-items"
