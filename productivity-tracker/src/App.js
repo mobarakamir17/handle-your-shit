@@ -6,11 +6,11 @@ import ToDoList from './components/ToDoList';
 import CompletedTasks from './components/CompletedTasks'; // Make sure the import uses the correct path
 import Calendar from './components/Calendar'; 
 
-function Container() {
+function Container({tasks, onAddToDo}) {
   return (
     <div className="container">
       <Pomodoro />
-      <ToDoList />
+      <ToDoList tasks={tasks} onAddToDo={onAddToDo} />
     </div>
   );
 }
@@ -33,6 +33,7 @@ function App() {
   }, []);
 
   const addNewTask = (text) => {
+    console.log(text)
     setUsersList([...usersList, { text, checked: false }]);
   };
 
@@ -51,7 +52,7 @@ function App() {
         </div>
 
         <Routes>
-          <Route path="/" element={<Container />} />
+          <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask}/>} />
           <Route
             path="/"
             element={<ToDoList tasks={usersList} onAddToDo={addNewTask} />}
