@@ -3,26 +3,24 @@ import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Pomodoro from './components/Pomodoro';
 import ToDoList from './components/ToDoList';
-import CompletedTasks from './components/CompletedTasks';
-import Calendar from './components/Calendar';
+import CompletedTasks from './components/CompletedTasks'; // Make sure the import uses the correct path
+import Calendar from './components/Calendar'; 
 
 function Container() {
   return (
     <div className="container">
       <Pomodoro />
       <ToDoList />
-      <Calendar />
     </div>
   );
 }
-
 function App() {
-  // Initialize usersList and completedItems states
   const [usersList, setUsersList] = useState([]);
   const [completedItems, setCompletedItems] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
 
-  // Fetch data from the API and update states
   useEffect(() => {
+    // Fetch data from the API and update states
     fetch("http://localhost:8003/users")
       .then((res) => res.json())
       .then((tasks) => setUsersList(tasks))
@@ -34,7 +32,6 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
-  // Define the function to add a new task
   const addNewTask = (text) => {
     setUsersList([...usersList, { text, checked: false }]);
   };
@@ -53,10 +50,13 @@ function App() {
             path="/"
             element={<ToDoList tasks={usersList} onAddToDo={addNewTask} />}
           />
-          <Route path="/calendar" element={<Calendar />} />
           <Route
             path="/completed-items"
             element={<CompletedTasks tasks={completedItems} />}
+          />
+          <Route
+            path="/calendar"
+            element={<Calendar selectedDate={selectedDate} completedItems={completedItems} />}
           />
         </Routes>
       </Router>
