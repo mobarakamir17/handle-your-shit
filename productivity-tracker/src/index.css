@@ -15,7 +15,7 @@ body {
   font-size: 100px;
 }
 
-.headerOptions {}
+/* .headerOptions {} */
 
 .pomodoro {
   font-size: 6em;
@@ -91,3 +91,7 @@ select {
   text-align: center;
   position: relative;
 } 
+
+.linkStyle {
+  color: #eabf9f;
+}
