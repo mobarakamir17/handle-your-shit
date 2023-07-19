@@ -5,6 +5,7 @@ import Pomodoro from './components/Pomodoro';
 import ToDoList from './components/ToDoList';
 import CompletedTasks from './components/CompletedTasks'; // Make sure the import uses the correct path
 import Calendar from './components/Calendar'; 
+import ShitList from './components/ShitList';
 
 function Container({tasks, onAddToDo}) {
   return (
@@ -45,9 +46,13 @@ function App() {
           <Link to="/" className="linkStyle homeLink">
             Home
           </Link>
-          <span className="navSeparator"> </span> {/* Add an empty element */}
+          <span className="navSeparator"> </span>
           <Link to="/completed-items" className="linkStyle">
             Completed Items
+          </Link>
+          <span className="navSeparator"> </span>
+          <Link to="/shit-list" className="linkStyle">
+            Shit List
           </Link>
         </div>
 
@@ -64,6 +69,10 @@ function App() {
           <Route
             path="/calendar"
             element={<Calendar selectedDate={selectedDate} completedItems={completedItems} />}
+          />
+          <Route
+            path="/shit-list"
+            element={<ShitList tasks={usersList} selectedDate={selectedDate} />}
           />
         </Routes>
       </Router>
