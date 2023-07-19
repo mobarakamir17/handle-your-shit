@@ -95,3 +95,16 @@ select {
 .linkStyle {
   color: #eabf9f;
 }
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.homeLink {
+  margin-right: 10px; /* Adjust the value as per your preference */
+}
+
+.navSeparator {
+  padding: 0 3px; /* Adjust the value as per your preference */
+}

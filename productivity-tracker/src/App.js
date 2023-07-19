@@ -40,9 +40,15 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <Link to="/completed-items" className="linkStyle">
-          Completed Items
-        </Link>
+        <div className="navigation">
+          <Link to="/" className="linkStyle homeLink">
+            Home
+          </Link>
+          <span className="navSeparator"> </span> {/* Add an empty element */}
+          <Link to="/completed-items" className="linkStyle">
+            Completed Items
+          </Link>
+        </div>
 
         <Routes>
           <Route path="/" element={<Container />} />
