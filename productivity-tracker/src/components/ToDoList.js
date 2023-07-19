@@ -1,53 +1,50 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Task from './Task';
 
-function ToDoList() {
-  const [toDo, setToDo] = useState("");
-  const [toDoList, setToDoList] = useState([]);
-  const [completedItems, setCompletedItems] = useState([]);
+function ToDoList({ tasks, onAddToDo, completedItems, setCompletedItems }) {
+  const [toDo, setToDo] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const input = form.elements.todo;
+    const text = input.value.trim();
+    if (text !== '') {
+      onAddToDo && onAddToDo(text);
+      input.value = '';
+    }
+  };
 
   function handleButton() {
     // Add the new to-do item to the toDoList state
-    setToDoList([...toDoList, { text: toDo, checked: false }]);
+    onAddToDo(toDo);
 
     // Clear the input field after adding the to-do item
-    setToDo("");
+    setToDo('');
   }
 
   function handleCheckboxChange(index) {
-    const updatedToDoList = [...toDoList];
+    const updatedToDoList = [...tasks];
     const completedItem = updatedToDoList.splice(index, 1)[0];
-    // updatedToDoList[index].checked = !updatedToDoList[index].checked;
     completedItem.completedAt = new Date();
-    setToDoList(updatedToDoList);
-    setCompletedItems([...completedItems, completedItems]);
+    setCompletedItems([...completedItems, completedItem]);
   }
 
   return (
     <div id="toDoList">
-      <div>To-Do List: </div>
-      <form>
-        <input
-          value={toDo}
-          type="text"
-          placeholder="To do's here!"
-          onChange={(e) => setToDo(e.target.value)}
-        />
-        <button onClick={(e) => { e.preventDefault(); handleButton(); }}>
-          Add
-        </button>
+      <h2>To Do List</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="todo" />
+        <button type="submit">Add</button>
       </form>
-      {toDoList.map((item, index) => (
-        <div key={index}>
-          <label>
-            <input
-              type="checkbox"
-              checked={item.checked}
-              onChange={() => handleCheckboxChange(index)}
-            />
-            {item.text}
-          </label>
-        </div>
-      ))}
+      <ul>
+        {tasks?.map((task, index) => (
+          <li key={index}>
+            <input type="checkbox" checked={task.checked} onChange={() => handleCheckboxChange(index)} />
+            <span>{task.text}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
