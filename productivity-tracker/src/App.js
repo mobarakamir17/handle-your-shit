@@ -11,7 +11,7 @@ function App() {
 const [usersList ,setUsersList] =useState([])
 
   useEffect(() => {
-    fetch("http//:localhost:8003/users")
+    fetch("http://localhost:8003/users")
     .then(res => res.json())
     .then((tasks) => setUsersList(tasks))
   },[]);
@@ -30,7 +30,7 @@ const [usersList ,setUsersList] =useState([])
           {/* existing components */}
           <Pomodoro />
           <ToDoList />
-         <CompletedTasks tasks = {usersList}/>
+         <CompletedTasks  usersList={usersList}/>
         {/* </Route> */}
       {/* </Switch> */}
     </div>
