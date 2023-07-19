@@ -23,8 +23,8 @@ function handleReset() {
     setActive(true);
     if (selectedOption === "Easy") {
         setDisplayMessage(false)
-        setMinutes(10);
-        setSeconds(0)
+        setMinutes(0);
+        setSeconds(10)
         setMinutesBreak(0)
         setSecondsBreak(5)
     } else if (selectedOption === "Normal") {
@@ -46,9 +46,9 @@ function handleOptionChange(event) {
     setSelectedOption(selectedOption);
     if (selectedOption === "Easy") {
         setDisplayMessage(false)
-        setMinutes(10);
-        setSeconds(0)
-        setMinutesBreak(5)
+        setMinutes(0);
+        setSeconds(10)
+        setMinutesBreak(0)
         setSecondsBreak(0)
     } else if (selectedOption === "Normal") {
         setDisplayMessage(false)
