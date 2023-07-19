@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import Task from './Task'; // Correct import for Task component
+import Task from './Task';
 
-function ToDoList({ tasks, onAddToDo }) {
+function ToDoList({ tasks, onAddToDo, completedItems, setCompletedItems }) {
+  const [toDo, setToDo] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,11 +15,19 @@ function ToDoList({ tasks, onAddToDo }) {
     }
   };
 
+  function handleButton() {
+    // Add the new to-do item to the toDoList state
+    onAddToDo(toDo);
+
+    // Clear the input field after adding the to-do item
+    setToDo('');
+  }
+
   function handleCheckboxChange(index) {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].checked = !updatedTasks[index].checked;
-    // Call onAddToDo to update the tasks state in the parent component (App.js)
-    onAddToDo(updatedTasks);
+    const updatedToDoList = [...tasks];
+    const completedItem = updatedToDoList.splice(index, 1)[0];
+    completedItem.completedAt = new Date();
+    setCompletedItems([...completedItems, completedItem]);
   }
 
   return (
@@ -30,11 +40,7 @@ function ToDoList({ tasks, onAddToDo }) {
       <ul>
         {tasks?.map((task, index) => (
           <li key={index}>
-            <input
-              type="checkbox"
-              checked={task.checked}
-              onChange={() => handleCheckboxChange(index)}
-            />
+            <input type="checkbox" checked={task.checked} onChange={() => handleCheckboxChange(index)} />
             <span>{task.text}</span>
           </li>
         ))}

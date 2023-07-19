@@ -1,25 +1,42 @@
-import React, { useState } from "react";
-import Task from "./Task"
+import React from 'react';
+import Task from './Task';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import { render } from "react-dom";
+import BigCalendar from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
-function CompletedTasks({usersList}){
+moment.locale("en-GB");
+const localizer = momentLocalizer(moment);
 
-    const userTasks =usersList.map((users)=>{ return (
+function CompletedTasks({ tasks, selectedDate }) { // Receive selectedDate as a prop
+  const completedTasks = Array.isArray(tasks) ? tasks.filter((task) => task.completedAt) : [];
 
-        <Task users={users.users} key= {users.id} time = {users.time}/>
-    )
-    }
-)
-console.log(userTasks)
-    return (<ol className="completedTasks">
-    {/* //     tasks.map((task)=>{ return (
+  const events = completedTasks.map((task) => ({
+    title: task.text,
+    start: new Date(task.completedAt),
+    end: new Date(task.completedAt)
+  }));
 
-    //         <Task task={task.task} key= {'task - ${task.id}'} time = {tasks.time}/>
-    //     )
-    //     }
-    // )} */}
-        {userTasks}
-    </ol>);
-
+  return (
+    <div id="completedTasks">
+      <h2>Completed Tasks</h2>
+      <ul>
+        {completedTasks.map((task, index) => (
+          <Task key={index} task={task} />
+        ))}
+      </ul>
+      <div id="calendar" style={{ height: 700 }}>
+        <Calendar
+          localizer={localizer}
+          events={events}
+          step={60}
+          views={['month', 'week', 'day']}
+          defaultDate={selectedDate} // Use the selectedDate prop here
+        />
+      </div>
+    </div>
+  );
 }
 
 export default CompletedTasks;

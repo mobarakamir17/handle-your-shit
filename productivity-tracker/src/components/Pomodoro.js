@@ -113,16 +113,19 @@ return  (
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                                             </svg>
             </div>
-        <div className="Settings">Settings<svg xmlns="http://www.w3.org/2000/svg" fill="none" width={24} height={20} viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
+        {/* <div className="Settings">Settings<svg xmlns="http://www.w3.org/2000/svg" fill="none" width={24} height={20} viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/>
-                    </svg></div>
+                    </svg></div> */}
         </div>
     <div className="message">
             <div>{displayMessage ? "Break Time!" : "Work Time!"}</div>
     </div>
    <div className="timer">{timerMinutes} : {timerSeconds}</div>
     <div id = "timerButtons">
-        <button className="Start" onClick={handleButton}>{active ? "Start" : "Stop"}</button>
+        <div className="Start" onClick={handleButton}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" width={100}>
+  <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 010 1.954l-7.108 4.061A1.125 1.125 0 013 16.811z" />
+</svg>
+</div>
     </div> 
     {/*break ternary operator*/}
     <p className="WB">WorkTime:BreakTime</p>

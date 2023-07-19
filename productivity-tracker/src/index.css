@@ -34,10 +34,17 @@ body {
 }
 
 .Start {
-
   text-align: center;
   justify-content: center;
   margin: auto;
+  width: 100px;
+  box-shadow: inset 0 0 0 0 #54b3d6;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+  height: 100px;
+}
+.Start:hover {
+  box-shadow: inset 112px 0 0 0 #54b3d6;
+  color: rgb(255, 255, 255)55, 255, 255
 }
 
 .headerOptions {
