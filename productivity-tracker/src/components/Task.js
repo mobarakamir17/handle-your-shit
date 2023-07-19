@@ -1,6 +1,14 @@
-import React, { useState } from "react";
-function Task({tasks : {tasks, id, time}}){
-    return (<li className="Task"><strong>task: {tasks}, time left: {time}</strong></li>
-        )
+import React from "react";
+
+function Task({ task }) {
+  return (
+    <li>
+      <label>
+        <input type="checkbox" checked={task.checked} />
+        {task.text}
+      </label>
+    </li>
+  );
 }
+
 export default Task;

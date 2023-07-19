@@ -15,7 +15,7 @@ body {
   font-size: 100px;
 }
 
-.headerOptions {}
+/* .headerOptions {} */
 
 .pomodoro {
   font-size: 6em;
@@ -25,6 +25,7 @@ body {
   font-size: 0.5em;
   min-height: 1.3em;
   margin-bottom: 0.5em;
+  text-align: center;
 }
 
 .timer {
@@ -40,8 +41,9 @@ body {
 }
 
 .headerOptions {
-  display: flex;
+  text-align: center;
   justify-content: center;
+  font-size: 25px;
 }
 
 /* Remove the flex properties from #toDoList */
@@ -53,7 +55,7 @@ body {
   position:relative;
   top: -260px;
 }
-label.selectOptions {
+.selectOptions {
   font-size: 20px;
   position: relative;
   top: -240px;
@@ -91,3 +93,30 @@ select {
   text-align: center;
   position: relative;
 } 
+
+.linkStyle {
+  color: #eabf9f;
+}
+.WB {
+  font-size: 20px;
+  position: relative;
+  top: -220px;
+}
+.Settings {
+cursor: pointer;
+margin: auto;
+width: 150px;
+}
+.Settings:hover {
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+.Reset {
+cursor: pointer;
+margin: auto;
+width: 100px;
+}
+.Reset:hover {
+  text-transform: uppercase;
+  text-decoration: underline;
+}
