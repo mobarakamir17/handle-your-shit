@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
+function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
   const [tasks, setTasks] = useState([]);
 
@@ -28,7 +28,7 @@ function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
     completedItem.completedAt = new Date();
     onSetCompletedItems([...completedItems, completedItem]);
     setTasks(updatedToDoList);
-    console.log(completedItem.id)
+    
     const id=completedItem.id
     fetch(`http://localhost:8003/users/${id}`, {
       method: "PATCH",
