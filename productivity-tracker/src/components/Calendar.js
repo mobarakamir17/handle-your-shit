@@ -3,14 +3,14 @@ import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-moment.locale("en-GB");
+moment.locale('en-GB');
 const localizer = momentLocalizer(moment);
 
-function Calendar({ selectedDate, completedItems }) {
-  const events = completedItems.map((item) => ({
+function Calendar({ completedItems }) {
+  const events = completedItems.map((item, index) => ({
     title: item.text,
     start: new Date(item.completedAt),
-    end: new Date(item.completedAt)
+    id: index,
   }));
 
   return (
@@ -20,7 +20,7 @@ function Calendar({ selectedDate, completedItems }) {
         events={events}
         step={60}
         views={['month', 'week', 'day']}
-        defaultDate={selectedDate}
+        defaultDate={new Date()}
       />
     </div>
   );

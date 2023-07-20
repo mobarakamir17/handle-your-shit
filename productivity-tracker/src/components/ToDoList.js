@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
+function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
   const [tasks, setTasks] = useState([]);
 
@@ -8,10 +8,7 @@ function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
     e.preventDefault();
     const text = toDo.trim();
     if (text !== '') {
-      // Assuming the onAddToDo function adds the task to the database or global state
       onAddToDo && onAddToDo(text);
-
-      // Update the local state to show the newly added task
       setTasks([...tasks, { text: toDo, checked: false }]);
       setToDo('');
     }
@@ -23,7 +20,7 @@ function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
     completedItem.completedAt = new Date();
     onSetCompletedItems([...completedItems, completedItem]);
   }
-
+  console.log(tasks)
   return (
     <div id="toDoList">
       <h2>To Do List</h2>
