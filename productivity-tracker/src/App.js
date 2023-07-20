@@ -27,15 +27,21 @@ function App() {
       .then((tasks) => setUsersList(tasks))
       .catch((error) => console.log(error));
     
-    // fetch("http://localhost:8003/completed-items")
-    //   .then((res) => res.json())
-    //   .then((items) => setCompletedItems(items))
-    //   .catch((error) => console.log(error));
+    fetch("http://localhost:8003/completed-items")
+      .then((res) => res.json())
+      .then((items) => setCompletedItems(items))
+      .catch((error) => console.log(error));
   }, []);
 
   const addNewTask = (text) => {
-    console.log(text)
     setUsersList([...usersList, { text, checked: false }]);
+  };
+
+  const handleSetCompletedItems = (completedTask) => {
+    setUsersList((prevUsers) =>
+      prevUsers.filter((task) => task.text !== completedTask.text)
+    );
+    setCompletedItems([...completedItems, completedTask]);
   };
 
   return (

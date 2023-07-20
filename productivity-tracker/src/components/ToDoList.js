@@ -19,6 +19,7 @@ function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
     const completedItem = updatedToDoList.splice(index, 1)[0];
     completedItem.completedAt = new Date();
     onSetCompletedItems([...completedItems, completedItem]);
+    setTasks(updatedToDoList); // Update the tasks state to remove the completed task
   }
   console.log(tasks)
   return (
