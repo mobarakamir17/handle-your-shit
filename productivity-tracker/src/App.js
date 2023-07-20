@@ -21,6 +21,8 @@ function App() {
   const [completedItems, setCompletedItems] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
+  console.log(CompletedTasks)
+
   useEffect(() => {
     fetch("http://localhost:8003/users")
       .then((res) => res.json())
@@ -37,12 +39,12 @@ function App() {
     setUsersList([...usersList, { text, checked: false }]);
   };
 
-  const handleSetCompletedItems = (completedTask) => {
-    setUsersList((prevUsers) =>
-      prevUsers.filter((task) => task.text !== completedTask.text)
-    );
-    setCompletedItems([...completedItems, completedTask]);
-  };
+  // const handleSetCompletedItems = (completedTask) => {
+  //   setUsersList((prevUsers) =>
+  //     prevUsers.filter((task) => task.text !== completedTask.text)
+  //   );
+  //   setCompletedItems([...completedItems, completedTask]);
+  // };
 
   return (
     <div className="App">
