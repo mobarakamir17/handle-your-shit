@@ -164,3 +164,9 @@ select {
   text-transform: uppercase;
   text-decoration: underline;
 }
+.About {
+  padding: 10px
+}
+.navSeparator{
+  padding: 10px
+}

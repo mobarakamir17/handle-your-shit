@@ -1,8 +1,26 @@
 {
   "users": [
-      {
-          "id": 1,
-          "text": "eat"
-      }
+    {
+      "id": 1,
+      "text": "eat",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "text": "play",
+      "checked": false
+    },
+    {
+      "text": "make",
+      "checked": false,
+      "id": 3,
+      "completedAt": "2023-07-20T21:33:27.177Z"
+    },
+    {
+      "text": "homework",
+      "checked": false,
+      "id": 4,
+      "completedAt": "2023-07-20T21:33:26.343Z"
+    }
   ]
 }

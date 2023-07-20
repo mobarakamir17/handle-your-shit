@@ -75,10 +75,7 @@ function App() {
           <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
           
           {/* Additional Routes */}
-          <Route
-            path="/"
-            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems} />}
-          />
+          <Route path="/" element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems} />}/>
           <Route
             path="/completed-items"
             element={<CompletedTasks tasks={completedItems} />}

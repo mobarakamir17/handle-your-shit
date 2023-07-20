@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
@@ -11,15 +11,32 @@ function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
       onAddToDo && onAddToDo(text);
       setTasks([...tasks, { text: toDo, checked: false }]);
       setToDo('');
-    }
-  }
-
+    }}
+   
+  useEffect(() => {
+    fetch("http://localhost:8003/users")
+      .then((res) => res.json())
+      .then((tasks) => setTasks(tasks))
+      .catch((error) => console.log(error));
+    
+    
+  }, []);
   function handleCheckboxChange(index) {
     const updatedToDoList = [...tasks];
     const completedItem = updatedToDoList.splice(index, 1)[0];
+    completedItem.checked=true;
     completedItem.completedAt = new Date();
     onSetCompletedItems([...completedItems, completedItem]);
-    setTasks(updatedToDoList); // Update the tasks state to remove the completed task
+    setTasks(updatedToDoList);
+    console.log(completedItem.id)
+    const id=completedItem.id
+    fetch(`http://localhost:8003/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(completedItem),
+  }) // Update the tasks state to remove the completed task
   }
   return (
     <div id="toDoList">
@@ -31,6 +48,7 @@ function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
       {tasks.length > 0 ? (
         <ul>
           {tasks.map((task, index) => (
+            
             <li key={index}>
               <input
                 type="checkbox"
