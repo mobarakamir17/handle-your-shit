@@ -33,11 +33,11 @@ function App() {
     //   .then((items) => setCompletedItems(items))
     //   .catch((error) => console.log(error));
   }, []);
-
   const addNewTask = (text) => {
     console.log(text)
     setUsersList([...usersList, { text, checked: false }]);
   };
+
   return (
     <div className="App">
       <Router>
