@@ -15,8 +15,6 @@ body {
   font-size: 100px;
 }
 
-/* .headerOptions {} */
-
 .pomodoro {
   font-size: 6em;
 }
@@ -53,7 +51,7 @@ body {
   font-size: 25px;
 }
 
-/* Remove the flex properties from #toDoList */
+/* to do list box */
 #toDoList {
   text-align: center;
   margin-bottom: 5px;
@@ -61,6 +59,7 @@ body {
   vertical-align: top;
   position:relative;
   top: -510px
+
 }
 .selectOptions {
   font-size: 20px;
@@ -75,7 +74,7 @@ text-align: center;
 margin: auto;
 }
 
- #toDoList label {
+#toDoList label {
   font-weight: bold;
   width: 20%;
   overflow: hidden;
@@ -87,11 +86,35 @@ margin: auto;
 
 }
 
-#toDoList input[type="checkbox"] {
-  margin-right: 10px;
-  float: right;
-  vertical-align: top;
+#toDoList ul {
+  list-style: none; /* Remove the default bullet points */
+  padding: 0; /* Remove padding from the ul element */
+}
 
+#toDoList li {
+  display: flex; /* Set the list items as flex containers */
+  align-items: center; /* Align items to the center vertically */
+  margin-bottom: 5px; /* Add some space between the to-do items */
+}
+
+#toDoList input[type="checkbox"] {
+  /* Adjust the checkbox position */
+  margin-right: 10px;
+}
+
+
+/* select options */
+label.selectOptions {
+  font-size: 20px;
+  position: relative;
+  top: -240px;
+  float: left;
+}
+
+select {
+  position: relative;
+  top: -240px;
+  float: left;
 }
 
 #timerButtons {
@@ -100,7 +123,7 @@ margin: auto;
   margin: 0 auto;
   text-align: center;
   position: relative;
-} 
+}
 
 .linkStyle {
   color: #eabf9f;
