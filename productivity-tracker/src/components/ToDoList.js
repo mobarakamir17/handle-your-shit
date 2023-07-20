@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
@@ -11,9 +11,16 @@ function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
       onAddToDo && onAddToDo(text);
       setTasks([...tasks, { text: toDo, checked: false }]);
       setToDo('');
-    }
-  }
-
+    }}
+   
+  useEffect(() => {
+    fetch("http://localhost:8003/users")
+      .then((res) => res.json())
+      .then((tasks) => setTasks(tasks))
+      .catch((error) => console.log(error));
+    
+    
+  }, []);
   function handleCheckboxChange(index) {
     const updatedToDoList = [...tasks];
     const completedItem = updatedToDoList.splice(index, 1)[0];
