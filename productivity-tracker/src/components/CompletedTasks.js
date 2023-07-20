@@ -1,15 +1,13 @@
 import React from 'react';
 import Task from './Task';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import { render } from "react-dom";
-import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
 
-function CompletedTasks({ tasks, selectedDate }) { // Receive selectedDate as a prop
+function CompletedTasks({ tasks, selectedDate }) {
   const completedTasks = Array.isArray(tasks) ? tasks.filter((task) => task.completedAt) : [];
 
   const events = completedTasks.map((task) => ({
@@ -32,7 +30,7 @@ function CompletedTasks({ tasks, selectedDate }) { // Receive selectedDate as a 
           events={events}
           step={60}
           views={['month', 'week', 'day']}
-          defaultDate={selectedDate} // Use the selectedDate prop here
+          defaultDate={selectedDate}
         />
       </div>
     </div>

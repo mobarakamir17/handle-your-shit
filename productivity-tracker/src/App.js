@@ -8,11 +8,11 @@ import Calendar from './components/Calendar';
 import ShitList from './components/ShitList';
 import About from './components/About';
 
-function Container({tasks, onAddToDo, onSetCompletedItems}) {
+function Container({tasks, onAddToDo, onSetCompletedItems, completedItems}) {
   return (
     <div className="container">
       <Pomodoro />
-      <ToDoList onSetCompletedItems= {onSetCompletedItems} completedItems= {[]} tasks={tasks} onAddToDo={onAddToDo} />
+      <ToDoList onSetCompletedItems= {onSetCompletedItems} completedItems= {completedItems} tasks={tasks} onAddToDo={onAddToDo} />
     </div>
   );
 }
@@ -20,9 +20,6 @@ function App() {
   const [usersList, setUsersList] = useState([]);
   const [completedItems, setCompletedItems] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
-
-  console.log(CompletedTasks)
-
 
 
   const addNewTask = (text) => {
@@ -35,13 +32,6 @@ function App() {
       body: JSON.stringify({text: text, checked:false}),
   })
   };
-
-  // const handleSetCompletedItems = (completedTask) => {
-  //   setUsersList((prevUsers) =>
-  //     prevUsers.filter((task) => task.text !== completedTask.text)
-  //   );
-  //   setCompletedItems([...completedItems, completedTask]);
-  // };
 
   return (
     <div className="App">
@@ -66,11 +56,7 @@ function App() {
         </div>
 
         <Routes>
-          <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
-          <Route
-            path="/"
-            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems} />}
-          />
+          <Route path="/" element={<Container completedItems={completedItems} tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
           <Route
             path="/completed-items"
             element={<CompletedTasks tasks={completedItems} />}
