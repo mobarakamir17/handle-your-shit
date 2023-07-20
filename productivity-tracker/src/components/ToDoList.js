@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Task from './Task';
 
-function ToDoList({ tasks, onAddToDo, completedItems, setCompletedItems }) {
+function ToDoList({ tasks, onAddToDo, completedItems, onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
 
   const handleSubmit = (e) => {
@@ -27,7 +27,7 @@ function ToDoList({ tasks, onAddToDo, completedItems, setCompletedItems }) {
     const updatedToDoList = [...tasks];
     const completedItem = updatedToDoList.splice(index, 1)[0];
     completedItem.completedAt = new Date();
-    setCompletedItems([...completedItems, completedItem]);
+    onSetCompletedItems([...completedItems, completedItem]);
   }
 
   return (

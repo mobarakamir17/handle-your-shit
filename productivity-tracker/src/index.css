@@ -25,6 +25,7 @@ body {
   font-size: 0.5em;
   min-height: 1.3em;
   margin-bottom: 0.5em;
+  text-align: center;
 }
 
 .timer {
@@ -33,15 +34,23 @@ body {
 }
 
 .Start {
-
   text-align: center;
   justify-content: center;
   margin: auto;
+  width: 100px;
+  box-shadow: inset 0 0 0 0 #54b3d6;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+  height: 100px;
+}
+.Start:hover {
+  box-shadow: inset 112px 0 0 0 #54b3d6;
+  color: rgb(255, 255, 255)55, 255, 255
 }
 
 .headerOptions {
-  display: flex;
+  text-align: center;
   justify-content: center;
+  font-size: 25px;
 }
 
 /* Remove the flex properties from #toDoList */
@@ -53,7 +62,7 @@ body {
   position:relative;
   top: -260px;
 }
-label.selectOptions {
+.selectOptions {
   font-size: 20px;
   position: relative;
   top: -240px;
@@ -95,16 +104,26 @@ select {
 .linkStyle {
   color: #eabf9f;
 }
-
-.navigation {
-  display: flex;
-  align-items: center;
+.WB {
+  font-size: 20px;
+  position: relative;
+  top: -220px;
 }
-
-.homeLink {
-  margin-right: 10px; /* Adjust the value as per your preference */
+.Settings {
+cursor: pointer;
+margin: auto;
+width: 150px;
 }
-
-.navSeparator {
-  padding: 0 3px; /* Adjust the value as per your preference */
+.Settings:hover {
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+.Reset {
+cursor: pointer;
+margin: auto;
+width: 100px;
+}
+.Reset:hover {
+  text-transform: uppercase;
+  text-decoration: underline;
 }

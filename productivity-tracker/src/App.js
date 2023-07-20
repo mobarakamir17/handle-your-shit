@@ -5,12 +5,13 @@ import Pomodoro from './components/Pomodoro';
 import ToDoList from './components/ToDoList';
 import CompletedTasks from './components/CompletedTasks'; // Make sure the import uses the correct path
 import Calendar from './components/Calendar'; 
+import ShitList from './components/ShitList';
 
-function Container({tasks, onAddToDo}) {
+function Container({tasks, onAddToDo, onSetCompletedItems}) {
   return (
     <div className="container">
       <Pomodoro />
-      <ToDoList tasks={tasks} onAddToDo={onAddToDo} />
+      <ToDoList onSetCompletedItems= {onSetCompletedItems} completedItems= {[]} tasks={tasks} onAddToDo={onAddToDo} />
     </div>
   );
 }
@@ -26,17 +27,16 @@ function App() {
       .then((tasks) => setUsersList(tasks))
       .catch((error) => console.log(error));
     
-    fetch("http://localhost:8003/completed-items")
-      .then((res) => res.json())
-      .then((items) => setCompletedItems(items))
-      .catch((error) => console.log(error));
+    // fetch("http://localhost:8003/completed-items")
+    //   .then((res) => res.json())
+    //   .then((items) => setCompletedItems(items))
+    //   .catch((error) => console.log(error));
   }, []);
 
   const addNewTask = (text) => {
     console.log(text)
     setUsersList([...usersList, { text, checked: false }]);
   };
-
   return (
     <div className="App">
       <Router>
@@ -45,9 +45,13 @@ function App() {
           <Link to="/" className="linkStyle homeLink">
             Home
           </Link>
-          <span className="navSeparator"> </span> {/* Add an empty element */}
+          <span className="navSeparator"> </span>
           <Link to="/completed-items" className="linkStyle">
             Completed Items
+          </Link>
+          <span className="navSeparator"> </span>
+          <Link to="/shit-list" className="linkStyle">
+            Shit List
           </Link>
         </div>
 
@@ -55,7 +59,7 @@ function App() {
           <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask}/>} />
           <Route
             path="/"
-            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} />}
+            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems}/>}
           />
           <Route
             path="/completed-items"
@@ -64,6 +68,10 @@ function App() {
           <Route
             path="/calendar"
             element={<Calendar selectedDate={selectedDate} completedItems={completedItems} />}
+          />
+          <Route
+            path="/shit-list"
+            element={<ShitList tasks={usersList} selectedDate={selectedDate} />}
           />
         </Routes>
       </Router>
