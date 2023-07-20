@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Pomodoro from './components/Pomodoro';
 import ToDoList from './components/ToDoList';
-import CompletedTasks from './components/CompletedTasks'; // Make sure the import uses the correct path
+import CompletedTasks from './components/CompletedTasks';
 import Calendar from './components/Calendar'; 
 import ShitList from './components/ShitList';
 import About from './components/About';
@@ -22,7 +22,6 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
-    // Fetch data from the API and update states
     fetch("http://localhost:8003/users")
       .then((res) => res.json())
       .then((tasks) => setUsersList(tasks))
@@ -38,6 +37,7 @@ function App() {
     console.log(text)
     setUsersList([...usersList, { text, checked: false }]);
   };
+
   return (
     <div className="App">
       <Router>
@@ -61,10 +61,10 @@ function App() {
         </div>
 
         <Routes>
-          <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask}/>} />
+          <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
           <Route
             path="/"
-            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems}/>}
+            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems} />}
           />
           <Route
             path="/completed-items"
