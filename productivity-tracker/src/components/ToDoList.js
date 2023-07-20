@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
-import Task from './Task';
 
-function ToDoList({ tasks, onAddToDo, completedItems, setCompletedItems }) {
+function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
+  const [tasks, setTasks] = useState([]);
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    const form = e.target;
-    const input = form.elements.todo;
-    const text = input.value.trim();
+    const text = toDo.trim();
     if (text !== '') {
+      // Assuming the onAddToDo function adds the task to the database or global state
       onAddToDo && onAddToDo(text);
-      input.value = '';
-    }
-  };
 
-  function handleButton() {
-    // Add the new to-do item to the toDoList state if it's not empty
-    if (toDo.trim() !== '') {
-      onAddToDo(toDo);
-
-      // Clear the input field after adding the to-do item
+      // Update the local state to show the newly added task
+      setTasks([...tasks, { text: toDo, checked: false }]);
       setToDo('');
     }
   }
@@ -29,7 +21,7 @@ function ToDoList({ tasks, onAddToDo, completedItems, setCompletedItems }) {
     const updatedToDoList = [...tasks];
     const completedItem = updatedToDoList.splice(index, 1)[0];
     completedItem.completedAt = new Date();
-    setCompletedItems([...completedItems, completedItem]);
+    onSetCompletedItems([...completedItems, completedItem]);
   }
 
   return (
@@ -39,21 +31,21 @@ function ToDoList({ tasks, onAddToDo, completedItems, setCompletedItems }) {
         <input type="text" name="todo" value={toDo} onChange={(e) => setToDo(e.target.value)} />
         <button type="submit">Add</button>
       </form>
-      {tasks.length > 0 ? ( // Only render the to-do items if there are tasks in the list
+      {tasks.length > 0 ? (
         <ul>
-          {tasks?.map((task, index) => (
+          {tasks.map((task, index) => (
             <li key={index}>
               <input
                 type="checkbox"
                 checked={task.checked}
                 onChange={() => handleCheckboxChange(index)}
               />
-              <span>{task.text}</span>
+              {task.text}
             </li>
           ))}
         </ul>
       ) : (
-        <p>No tasks to display.</p> // Render this message if there are no tasks in the list
+        <p>No tasks to display.</p>
       )}
     </div>
   );
