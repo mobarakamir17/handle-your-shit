@@ -24,9 +24,19 @@ function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
   function handleCheckboxChange(index) {
     const updatedToDoList = [...tasks];
     const completedItem = updatedToDoList.splice(index, 1)[0];
+    completedItem.checked=true;
     completedItem.completedAt = new Date();
     onSetCompletedItems([...completedItems, completedItem]);
-    setTasks(updatedToDoList); // Update the tasks state to remove the completed task
+    setTasks(updatedToDoList);
+    console.log(completedItem.id)
+    const id=completedItem.id
+    fetch(`http://localhost:8003/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(completedItem),
+  }) // Update the tasks state to remove the completed task
   }
   console.log(tasks)
   return (
@@ -39,6 +49,7 @@ function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
       {tasks.length > 0 ? (
         <ul>
           {tasks.map((task, index) => (
+            
             <li key={index}>
               <input
                 type="checkbox"

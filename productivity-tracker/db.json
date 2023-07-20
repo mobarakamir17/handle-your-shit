@@ -12,8 +12,15 @@
     },
     {
       "text": "make",
-      "checked": false,
-      "id": 3
+      "checked": true,
+      "id": 3,
+      "completedAt": "2023-07-20T21:00:57.879Z"
+    },
+    {
+      "text": "homework",
+      "checked": true,
+      "id": 4,
+      "completedAt": "2023-07-20T21:00:58.628Z"
     }
   ]
 }
