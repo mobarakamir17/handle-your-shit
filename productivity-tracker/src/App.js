@@ -8,21 +8,24 @@ import Calendar from './components/Calendar';
 import ShitList from './components/ShitList';
 import About from './components/About';
 
-function Container({tasks, onAddToDo, onSetCompletedItems}) {
+// Container Component
+function Container({ tasks, onAddToDo, onSetCompletedItems }) {
   return (
     <div className="container">
       <Pomodoro />
-      <ToDoList onSetCompletedItems= {onSetCompletedItems} completedItems= {[]} tasks={tasks} onAddToDo={onAddToDo} />
+      <ToDoList onSetCompletedItems={onSetCompletedItems} completedItems={[]} tasks={tasks} onAddToDo={onAddToDo} />
     </div>
   );
 }
+
+// Main App Component
 function App() {
+  // State hooks
   const [usersList, setUsersList] = useState([]);
   const [completedItems, setCompletedItems] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  console.log(CompletedTasks)
-
+  // Fetch data using useEffect hook
   useEffect(() => {
     fetch("http://localhost:8003/users")
       .then((res) => res.json())
@@ -35,21 +38,19 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
+  // Function to add a new task
   const addNewTask = (text) => {
     setUsersList([...usersList, { text, checked: false }]);
   };
 
-  // const handleSetCompletedItems = (completedTask) => {
-  //   setUsersList((prevUsers) =>
-  //     prevUsers.filter((task) => task.text !== completedTask.text)
-  //   );
-  //   setCompletedItems([...completedItems, completedTask]);
-  // };
-
+  // Render the component
   return (
     <div className="App">
       <Router>
+        {/* Header */}
         <Header />
+
+        {/* Navigation */}
         <div className="navigation">
           <Link to="/" className="linkStyle homeLink">
             Home
@@ -68,8 +69,12 @@ function App() {
           </Link>
         </div>
 
+        {/* Routes */}
         <Routes>
+          {/* Main Route */}
           <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
+          
+          {/* Additional Routes */}
           <Route
             path="/"
             element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems} />}

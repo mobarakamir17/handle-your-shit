@@ -21,7 +21,6 @@ function ToDoList({ onAddToDo, completedItems=[], onSetCompletedItems }) {
     onSetCompletedItems([...completedItems, completedItem]);
     setTasks(updatedToDoList); // Update the tasks state to remove the completed task
   }
-  console.log(tasks)
   return (
     <div id="toDoList">
       <h2>To Do List</h2>
