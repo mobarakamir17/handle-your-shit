@@ -8,11 +8,11 @@ import Calendar from './components/Calendar';
 import ShitList from './components/ShitList';
 import About from './components/About';
 
-function Container({tasks, onAddToDo, onSetCompletedItems}) {
+function Container({tasks, onAddToDo, onSetCompletedItems, completedItems}) {
   return (
     <div className="container">
       <Pomodoro />
-      <ToDoList onSetCompletedItems= {onSetCompletedItems} completedItems= {[]} tasks={tasks} onAddToDo={onAddToDo} />
+      <ToDoList onSetCompletedItems= {onSetCompletedItems} completedItems= {completedItems} tasks={tasks} onAddToDo={onAddToDo} />
     </div>
   );
 }
@@ -26,15 +26,9 @@ function App() {
       .then((res) => res.json())
       .then((tasks) => setUsersList(tasks))
       .catch((error) => console.log(error));
-    
-    // fetch("http://localhost:8003/completed-items")
-    //   .then((res) => res.json())
-    //   .then((items) => setCompletedItems(items))
-    //   .catch((error) => console.log(error));
   }, []);
 
   const addNewTask = (text) => {
-    console.log(text)
     setUsersList([...usersList, { text, checked: false }]);
   };
 
@@ -61,11 +55,7 @@ function App() {
         </div>
 
         <Routes>
-          <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
-          <Route
-            path="/"
-            element={<ToDoList tasks={usersList} onAddToDo={addNewTask} completedItems={completedItems} onSetCompletedItems={setCompletedItems} />}
-          />
+          <Route path="/" element={<Container completedItems={completedItems} tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
           <Route
             path="/completed-items"
             element={<CompletedTasks tasks={completedItems} />}
