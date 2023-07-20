@@ -103,20 +103,6 @@ margin: auto;
 }
 
 
-/* select options */
-label.selectOptions {
-  font-size: 20px;
-  position: relative;
-  top: -240px;
-  float: left;
-}
-
-select {
-  position: relative;
-  top: -240px;
-  float: left;
-}
-
 #timerButtons {
   display: block;
   clear: both;
