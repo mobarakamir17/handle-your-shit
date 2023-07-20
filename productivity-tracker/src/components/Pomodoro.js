@@ -83,8 +83,8 @@ if(active) {
                 setDisplayMessage(true)
                 } else {
                 setWorking(true); //work
-                if (setBreakTimer(false))  {
-                setMinutes(minutes)
+                if (setBreakTimer(false)) {
+                setMinutes(minutes);
                 setSeconds(seconds);
                 setDisplayMessage(false)}
                 }

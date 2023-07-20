@@ -6,6 +6,7 @@ import ToDoList from './components/ToDoList';
 import CompletedTasks from './components/CompletedTasks'; // Make sure the import uses the correct path
 import Calendar from './components/Calendar'; 
 import ShitList from './components/ShitList';
+import About from './components/About';
 
 function Container({tasks, onAddToDo, onSetCompletedItems}) {
   return (
@@ -53,6 +54,10 @@ function App() {
           <Link to="/shit-list" className="linkStyle">
             Shit List
           </Link>
+          <span className='About'></span>
+          <Link to="/about" className="linkStyle">
+            About
+          </Link>
         </div>
 
         <Routes>
@@ -72,6 +77,9 @@ function App() {
           <Route
             path="/shit-list"
             element={<ShitList tasks={usersList} selectedDate={selectedDate} />}
+          />
+          <Route path='/About'
+          element={<About/>}
           />
         </Routes>
       </Router>
