@@ -1,8 +1,19 @@
 {
   "users": [
-      {
-          "id": 1,
-          "text": "eat"
-      }
+    {
+      "id": 1,
+      "text": "eat",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "text": "play",
+      "checked": false
+    },
+    {
+      "text": "make",
+      "checked": false,
+      "id": 3
+    }
   ]
 }

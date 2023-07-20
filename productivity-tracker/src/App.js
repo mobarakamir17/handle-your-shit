@@ -23,20 +23,17 @@ function App() {
 
   console.log(CompletedTasks)
 
-  useEffect(() => {
-    fetch("http://localhost:8003/users")
-      .then((res) => res.json())
-      .then((tasks) => setUsersList(tasks))
-      .catch((error) => console.log(error));
-    
-    fetch("http://localhost:8003/completed-items")
-      .then((res) => res.json())
-      .then((items) => setCompletedItems(items))
-      .catch((error) => console.log(error));
-  }, []);
+
 
   const addNewTask = (text) => {
     setUsersList([...usersList, { text, checked: false }]);
+    fetch("http://localhost:8003/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({text: text, checked:false}),
+  })
   };
 
   // const handleSetCompletedItems = (completedTask) => {
