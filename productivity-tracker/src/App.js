@@ -21,15 +21,16 @@ function App() {
   const [completedItems, setCompletedItems] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  useEffect(() => {
-    fetch("http://localhost:8003/users")
-      .then((res) => res.json())
-      .then((tasks) => setUsersList(tasks))
-      .catch((error) => console.log(error));
-  }, []);
 
   const addNewTask = (text) => {
     setUsersList([...usersList, { text, checked: false }]);
+    fetch("http://localhost:8003/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({text: text, checked:false}),
+  })
   };
 
   return (

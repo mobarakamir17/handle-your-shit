@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
@@ -11,8 +11,8 @@ function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
       onAddToDo && onAddToDo(text);
       setTasks([...tasks, { text: toDo, checked: false }]);
       setToDo('');
-    }
-  }
+    }}
+   
   useEffect(() => {
     fetch("http://localhost:8003/users")
       .then((res) => res.json())
@@ -37,6 +37,7 @@ function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
       {tasks.length > 0 ? (
         <ul>
           {tasks.map((task, index) => (
+            
             <li key={index}>
               <input
                 type="checkbox"
