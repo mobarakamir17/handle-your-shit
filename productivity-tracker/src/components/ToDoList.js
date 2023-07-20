@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Task from './Task';
 
 function ToDoList({ tasks, onAddToDo, completedItems, onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
@@ -28,7 +29,7 @@ function ToDoList({ tasks, onAddToDo, completedItems, onSetCompletedItems }) {
     completedItem.completedAt = new Date();
     onSetCompletedItems([...completedItems, completedItem]);
   }
-console.log(tasks[0])
+
   return (
     <div id="toDoList">
       <h2>To Do List</h2>
@@ -37,8 +38,8 @@ console.log(tasks[0])
         <button type="submit">Add</button>
       </form>
       <ul>
-        {tasks.map((task, index) => (
-          <li key={task.id}>
+        {tasks?.map((task, index) => (
+          <li key={index}>
             <input type="checkbox" checked={task.checked} onChange={() => handleCheckboxChange(index)} />
             <span>{task.text}</span>
           </li>

@@ -4,12 +4,14 @@
           "id": 1,
           "username": "goblin",
           "password": "ImmortalGoblin",
-          "tasks": {
+          "tasks": [
+              {
                   "id":1,
                   "task": "eat",
                   "completed": true,
                   "time_left": 20
-            }
+              }
+          ]
       }
   ]
 }
