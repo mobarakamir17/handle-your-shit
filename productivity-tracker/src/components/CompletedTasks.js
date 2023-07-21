@@ -10,6 +10,7 @@ moment.locale("en-GB");
 // Create a localizer using moment
 const localizer = momentLocalizer(moment);
 
+
 // CompletedTasks component
 function CompletedTasks({ tasks, selectedDate }) {
   // Filter out the tasks that are completed (have a completedAt property)
@@ -38,7 +39,7 @@ function CompletedTasks({ tasks, selectedDate }) {
           events={events}
           step={60}
           views={['month', 'week', 'day']}
-          defaultDate={selectedDate} // Use the selectedDate prop here
+          defaultDate={selectedDate}
         />
       </div>
     </div>

@@ -18,11 +18,10 @@ function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
       .then((res) => res.json())
       .then((tasks) => setTasks(tasks))
       .catch((error) => console.log(error));
+    }, []);
     
-    
-  }, []);
-  function handleCheckboxChange(index) {
     const updatedToDoList = [...tasks];
+
     const completedItem = updatedToDoList.splice(index, 1)[0];
     completedItem.checked = !completedItem.checked;
     completedItem.completedAt = completedItem.checked ? new Date() : null;
@@ -45,6 +44,7 @@ function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
       },
       body: JSON.stringify(completedItem),
     });
+
   }
   return (
     <div id="toDoList">

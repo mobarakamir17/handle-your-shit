@@ -44,6 +44,7 @@ function App() {
     setUsersList([...usersList, { text, checked: false }]);
   };
 
+
   // Render the component
   return (
     <div className="App">
@@ -76,6 +77,7 @@ function App() {
           <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
           
           {/* Additional Routes */}
+
           <Route
             path="/completed-items"
             element={<CompletedTasks tasks={completedItems} />}
