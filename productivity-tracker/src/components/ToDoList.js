@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
   const [toDo, setToDo] = useState('');
   const [tasks, setTasks] = useState([]);
-
+  const [shitListTasks, setShitListTasks] = useState([]);
   function handleSubmit(e) {
     e.preventDefault();
     const text = toDo.trim();
@@ -21,11 +21,30 @@ function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
     }, []);
     
     const updatedToDoList = [...tasks];
-    function handleCheckboxChange(index) {
-      const completedItem = updatedToDoList.splice(index, 1)[0];
-      completedItem.completedAt = new Date();
+
+    const completedItem = updatedToDoList.splice(index, 1)[0];
+    completedItem.checked = !completedItem.checked;
+    completedItem.completedAt = completedItem.checked ? new Date() : null;
+  
+    if (completedItem.checked) {
+      // If task is checked (completed), add it to the completedItems state
       onSetCompletedItems([...completedItems, completedItem]);
-      setTasks(updatedToDoList);
+    } else {
+      // If task is not checked (completed), add it to the shitListTasks state
+      setShitListTasks([...shitListTasks, completedItem]);
+    }
+  
+    setTasks(updatedToDoList);
+  
+    const id = completedItem.id;
+    fetch(`http://localhost:8003/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(completedItem),
+    });
+
   }
   return (
     <div id="toDoList">

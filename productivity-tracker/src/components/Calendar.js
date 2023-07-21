@@ -12,7 +12,6 @@ function Calendar({ completedItems }) {
     start: new Date(item.completedAt),
     id: index,
   }));
-console.log(events)
   return (
     <div id="calendar" style={{ height: 600 }}>
       <BigCalendar

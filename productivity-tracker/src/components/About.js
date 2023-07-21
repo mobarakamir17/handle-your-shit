@@ -1,18 +1,19 @@
 import React from "react";
 
 const About = () => {
-    return (
-<>
-    <p>
-    This web app is a replica of a Pomodoro App. Pomodoro app are found to be effective when you need to focus to be able to do a certain task folllowed by a quick break. It's effective because it lets your brain rest and you are able to focus better because of the breaks.
-    <br />
-    <br />
-    This app allows you to pick which mode that you would like to study in. There is easy mode, Normal mode, and Hard mode. The modes get harder because the work time gets longer and break time only increase by a little. 
+  return (
+    <>
+      <p>
+        Welcome to this Pomodoro App replica, a tool designed to enhance your focus and productivity. Pomodoro techniques are proven to be effective for tasks that require concentration, followed by short breaks. By incorporating regular breaks, this technique allows your brain to rest, leading to better focus and improved productivity.
+        <br />
+        <br />
+        With this app, you can choose your preferred study mode: Easy, Normal, or Hard. Each mode offers different work and break intervals. As you progress from Easy to Hard mode, the work time increases while the break time only slightly extends.
+        <br />
+        <br />
+        This app serves as a simple yet powerful Pomodoro tool to help you manage your time and tasks effectively. We hope you enjoy using it and stay productive!
+      </p>
+    </>
+  );
+};
 
-
-    This is a example of a simple Pomodora App, I hope you enjoy and get working!
-    </p>
-</>
-    )
- }
 export default About;
