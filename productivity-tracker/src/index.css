@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   background-color: #1e212d;
   color: #eabf9f;
@@ -9,6 +10,8 @@ body {
   height: 100%;
 }
 
+
+/* Header Styles */
 .header {
   display: flex;
   justify-content: center;
@@ -31,6 +34,8 @@ body {
   word-spacing: -50px;
 }
 
+
+/* Start Button Styles */
 .Start {
   text-align: center;
   justify-content: center;
@@ -43,36 +48,40 @@ body {
 }
 .Start:hover {
   box-shadow: inset 112px 0 0 0 #54b3d6;
-  color: rgb(255, 255, 255)55, 255, 255
+  color: rgb(255, 255, 255);
 }
 
+
+/* Header Options */
 .headerOptions {
   text-align: center;
   justify-content: center;
   font-size: 25px;
 }
 
-/* to do list box */
+
+/* To-Do List Styles */
 #toDoList {
   text-align: center;
   margin-bottom: 5px;
   float: right;
   vertical-align: top;
-  position:relative;
-  top: -510px
-
+  position: relative;
+  top: -510px;
 }
+
 .selectOptions {
   font-size: 20px;
   text-align: center;
   justify-content: center;
   display: flex;
 }
+
 select {
-display: flex;
-justify-content: center;
-text-align: center;
-margin: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
 }
 
 #toDoList label {
@@ -84,7 +93,6 @@ margin: auto;
   line-height: 1.5em;
   float: right;
   vertical-align: top;
-
 }
 
 #toDoList ul {
@@ -104,6 +112,7 @@ margin: auto;
 }
 
 
+/* Timer Buttons */
 #timerButtons {
   display: block;
   clear: both;
@@ -112,32 +121,45 @@ margin: auto;
   position: relative;
 }
 
+
+/* Link Styles */
 .linkStyle {
   color: #eabf9f;
 }
+
+
+/* WB Styles */
 .WB {
   font-size: 20px;
   position: relative;
   margin: auto;
   text-align: center;
-  padding:25px
+  padding: 25px;
 }
+
+
+/* Settings Button Styles */
 .Settings {
-cursor: pointer;
-margin: auto;
-width: 150px;
+  cursor: pointer;
+  margin: auto;
+  width: 150px;
 }
+
 .Settings:hover {
   text-decoration: underline;
   text-transform: uppercase;
 }
+
+
+/* Reset Button Styles */
 .Reset {
-cursor: pointer;
-margin: auto;
-width: 100px;
-position: relative;
-transform: translateY(-25px);
+  cursor: pointer;
+  margin: auto;
+  width: 100px;
+  position: relative;
+  transform: translateY(-25px);
 }
+
 .Reset:hover {
   text-transform: uppercase;
   text-decoration: underline;
