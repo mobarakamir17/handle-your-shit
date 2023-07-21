@@ -148,3 +148,9 @@ transform: translateY(-25px);
 .navSeparator{
   padding: 10px
 }
+#enjoy {
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}

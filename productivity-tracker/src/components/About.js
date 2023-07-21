@@ -1,8 +1,8 @@
 import React from "react";
 
 const About = () => {
-    return (
-<>
+    return (   
+<div id="about">
     <p>
     This web app is a replica of a Pomodoro App. Pomodoro app are found to be effective when you need to focus to be able to do a certain task folllowed by a quick break. It's effective because it lets your brain rest and you are able to focus better because of the breaks.
     <br />
@@ -12,7 +12,8 @@ const About = () => {
 
     This is a example of a simple Pomodora App, I hope you enjoy and get working!
     </p>
-</>
+    <img id='enjoy' alt='' width="500" height="500" src="https://media.tenor.com/IErQHBRt6GIAAAAM/leonardo-dicaprio.gif"/>
+</div>
     )
  }
 export default About;
