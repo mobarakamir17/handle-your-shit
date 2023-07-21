@@ -3,37 +3,211 @@
     {
       "id": 1,
       "text": "eat",
-      "checked": true,
-      "completedAt": "2023-07-21T15:09:11.308Z"
+      "checked": false,
+      "completedAt": "2023-07-20T21:48:43.967Z"
     },
     {
       "id": 2,
       "text": "play",
-      "checked": true,
-      "completedAt": "2023-07-21T15:09:11.715Z"
+      "checked": false,
+      "completedAt": "2023-07-20T21:48:44.512Z"
     },
     {
       "text": "make",
-      "checked": true,
+      "checked": false,
       "id": 3,
-
-      "completedAt": "2023-07-21T15:09:12.792Z"
-
+      "completedAt": null
     },
     {
       "text": "homework",
       "checked": false,
       "id": 4,
-
-
-      "completedAt": "2023-07-21T06:09:02.723Z"
+      "completedAt": null
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 5,
+      "completedAt": "2023-07-21T17:16:35.701Z"
+    },
+    {
+      "text": "do homework",
+      "checked": true,
+      "id": 6,
+      "completedAt": "2023-07-21T17:16:37.031Z"
+    },
+    {
+      "text": "clean room",
+      "checked": false,
+      "id": 7
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 8,
+      "completedAt": "2023-07-21T17:17:41.502Z"
+    },
+    {
+      "text": "do homework",
+      "checked": true,
+      "id": 9,
+      "completedAt": "2023-07-21T17:17:44.070Z"
+    },
+    {
+      "text": "clean bed",
+      "checked": true,
+      "id": 10,
+      "completedAt": "2023-07-21T17:17:44.502Z"
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 11,
+      "completedAt": "2023-07-21T17:25:24.925Z"
+    },
+    {
+      "text": "do homework",
+      "checked": false,
+      "id": 12
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 13,
+      "completedAt": "2023-07-21T17:26:18.607Z"
+    },
+    {
+      "text": "paint",
+      "checked": true,
+      "id": 14,
+      "completedAt": "2023-07-21T17:26:19.206Z"
+    },
+    {
+      "text": "edit video",
+      "checked": false,
+      "id": 15
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 16,
+      "completedAt": "2023-07-21T17:27:47.239Z"
+    },
+    {
+      "text": "do homework",
+      "checked": true,
+      "id": 17,
+      "completedAt": "2023-07-21T17:27:47.458Z"
+    },
+    {
+      "text": "fix car",
+      "checked": false,
+      "id": 18
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 19,
+      "completedAt": "2023-07-21T17:33:42.089Z"
+    },
+    {
+      "text": "homework",
+      "checked": true,
+      "id": 20,
+      "completedAt": "2023-07-21T17:33:42.522Z"
+    },
+    {
+      "text": "groom cat",
+      "checked": false,
+      "id": 21
+    },
+    {
+      "text": "brush teeth",
+      "checked": false,
+      "id": 22
+    },
+    {
+      "text": "make bec",
+      "checked": true,
+      "id": 23,
+      "completedAt": "2023-07-21T17:35:33.907Z"
+    },
+    {
+      "text": "homework",
+      "checked": true,
+      "id": 24,
+      "completedAt": "2023-07-21T17:35:34.356Z"
+    },
+    {
+      "text": "cartwheel",
+      "checked": false,
+      "id": 25
+    },
+    {
+      "text": "gym",
+      "checked": false,
+      "id": 26
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 27,
+      "completedAt": "2023-07-21T17:39:08.670Z"
+    },
+    {
+      "text": "homework",
+      "checked": true,
+      "id": 28,
+      "completedAt": "2023-07-21T17:39:09.455Z"
+    },
+    {
+      "text": "space travel",
+      "checked": false,
+      "id": 29
+    },
+    {
+      "text": "cure cancer",
+      "checked": false,
+      "id": 30
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 31,
+      "completedAt": "2023-07-21T17:42:09.690Z"
+    },
+    {
+      "text": "cook dinner",
+      "checked": true,
+      "id": 32,
+      "completedAt": "2023-07-21T17:42:10.442Z"
+    },
+    {
+      "text": "moon",
+      "checked": false,
+      "id": 33
+    },
+    {
+      "text": "make bed",
+      "checked": true,
+      "id": 34,
+      "completedAt": "2023-07-21T17:43:45.326Z"
+    },
+    {
+      "text": "cure cancer",
+      "checked": true,
+      "id": 35,
+      "completedAt": "2023-07-21T17:43:45.954Z"
+    },
+    {
+      "text": "fly to the moon",
+      "checked": false,
+      "id": 36
     },
     {
       "text": "make bed",
       "checked": false,
-      "id": 5,
-      "completedAt": "2023-07-21T06:09:03.006Z"
-
+      "id": 37
     }
   ]
 }

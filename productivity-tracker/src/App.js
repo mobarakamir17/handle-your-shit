@@ -8,51 +8,55 @@ import Calendar from './components/Calendar';
 import ShitList from './components/ShitList';
 import About from './components/About';
 
-// Container Component
-function Container({ tasks, onAddToDo, onSetCompletedItems }) {
+function Container({tasks, onAddToDo, onSetCompletedItems, completedItems, handleCheckboxChange}) {
   return (
     <div className="container">
       <Pomodoro />
-      <ToDoList onSetCompletedItems={onSetCompletedItems} completedItems={[]} tasks={tasks} onAddToDo={onAddToDo} />
+      <ToDoList handleCheckboxChange={handleCheckboxChange} onSetCompletedItems= {onSetCompletedItems} completedItems= {completedItems} tasks={tasks} onAddToDo={onAddToDo} />
     </div>
   );
 }
-
-// Main App Component
 function App() {
-  // State hooks
   const [usersList, setUsersList] = useState([]);
   const [completedItems, setCompletedItems] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [shitListTasks, setShitListTasks] = useState([])
 
-  // Fetch data using useEffect hook
-  useEffect(() => {
-    fetch("http://localhost:8003/users")
-      .then((res) => res.json())
-      .then((tasks) => setUsersList(tasks))
-      .catch((error) => console.log(error));
-    
-    fetch("http://localhost:8003/completed-items")
-      .then((res) => res.json())
-      .then((items) => setCompletedItems(items))
-      .catch((error) => console.log(error));
-  }, []);
 
-  // Function to add a new task
   const addNewTask = (text) => {
-    setUsersList([...usersList, { text, checked: false }]);
-  };
+    // setUsersList([...usersList, { text, checked: false }]);
+    fetch("http://localhost:8003/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({text: text, checked:false}),
+  })
+  .then(resp => resp.json())
+  .then(data => {
+    setUsersList([...usersList, { text, checked: false, id: data.id }]);
+  })
+  }
+  function handleCheckboxChange(index) {
+    const updatedToDoList = [...usersList];
+    const completedItem = updatedToDoList.splice(index, 1)[0];
+    completedItem.checked = true;
+    setCompletedItems([...completedItems, completedItem])
+    completedItem.completedAt = new Date();
+    setUsersList(updatedToDoList);
+    const id=completedItem.id
+    fetch(`http://localhost:8003/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(completedItem),
+  }) 
+  }
 
-
-  // Render the component
   return (
     <div className="App">
       <Router>
-        {/* Header */}
         <Header />
-
-        {/* Navigation */}
         <div className="navigation">
           <Link to="/" className="linkStyle homeLink">
             Home
@@ -71,13 +75,8 @@ function App() {
           </Link>
         </div>
 
-        {/* Routes */}
         <Routes>
-          {/* Main Route */}
-          <Route path="/" element={<Container tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
-          
-          {/* Additional Routes */}
-
+          <Route path="/" element={<Container handleCheckboxChange={handleCheckboxChange} completedItems={completedItems} tasks={usersList} onAddToDo={addNewTask} onSetCompletedItems={setCompletedItems} />} />
           <Route
             path="/completed-items"
             element={<CompletedTasks tasks={completedItems} />}
@@ -88,7 +87,7 @@ function App() {
           />
           <Route
             path="/shit-list"
-            element={<ShitList tasks={usersList} selectedDate={selectedDate} shitListTasks={shitListTasks} />} // Pass shitListTasks as a prop
+            element={<ShitList tasks={usersList} selectedDate={selectedDate} />}
           />
           <Route path='/About'
           element={<About/>}
