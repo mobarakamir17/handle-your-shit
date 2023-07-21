@@ -1,8 +1,7 @@
 import React from "react";
 
-const About = () => {
   return (
-    <>
+    <div id="about">
       <p>
         Welcome to this Pomodoro App replica, a tool designed to enhance your focus and productivity. Pomodoro techniques are proven to be effective for tasks that require concentration, followed by short breaks. By incorporating regular breaks, this technique allows your brain to rest, leading to better focus and improved productivity.
         <br />
@@ -12,8 +11,9 @@ const About = () => {
         <br />
         This app serves as a simple yet powerful Pomodoro tool to help you manage your time and tasks effectively. We hope you enjoy using it and stay productive!
       </p>
-    </>
+      <img id='enjoy' alt='' width="500" height="500" src="https://media.tenor.com/IErQHBRt6GIAAAAM/leonardo-dicaprio.gif"/>
+    </div>
   );
 };
 
-export default About;
+
