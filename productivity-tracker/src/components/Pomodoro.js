@@ -30,10 +30,10 @@ function Pomodoro() {
     // Reset timer based on the selected option
     if (selectedOption === "Easy") {
       setDisplayMessage(false);
-      setMinutes(0);
-      setSeconds(10);
-      setMinutesBreak(0);
-      setSecondsBreak(5);
+      setMinutes(10);
+      setSeconds(0);
+      setMinutesBreak(5);
+      setSecondsBreak(0);
     } else if (selectedOption === "Normal") {
       setDisplayMessage(false);
       setMinutes(25);
@@ -57,9 +57,9 @@ function Pomodoro() {
     // Reset timer based on the selected option
     if (selectedOption === "Easy") {
       setDisplayMessage(false);
-      setMinutes(0);
-      setSeconds(10);
-      setMinutesBreak(0);
+      setMinutes(10);
+      setSeconds(0);
+      setMinutesBreak(5);
       setSecondsBreak(0);
     } else if (selectedOption === "Normal") {
       setDisplayMessage(false);

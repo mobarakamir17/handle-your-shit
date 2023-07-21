@@ -1,74 +1,45 @@
 import React, { useState, useEffect } from 'react';
 
-function ToDoList({ onAddToDo, completedItems, onSetCompletedItems }) {
+function ToDoList({ onAddToDo, tasks, handleCheckboxChange }) {
   const [toDo, setToDo] = useState('');
-  const [tasks, setTasks] = useState([]);
-  const [shitListTasks, setShitListTasks] = useState([]);
+
+  // Function to handle form submission when adding a new task
   function handleSubmit(e) {
     e.preventDefault();
     const text = toDo.trim();
     if (text !== '') {
-      onAddToDo && onAddToDo(text);
-      setTasks([...tasks, { text: toDo, checked: false }]);
-      setToDo('');
-    }}
-   
-  useEffect(() => {
-    fetch("http://localhost:8003/users")
-      .then((res) => res.json())
-      .then((tasks) => setTasks(tasks))
-      .catch((error) => console.log(error));
-    
-    
-  }, []);
-  function handleCheckboxChange(index) {
-    const updatedToDoList = [...tasks];
-    const completedItem = updatedToDoList.splice(index, 1)[0];
-    completedItem.checked = !completedItem.checked;
-    completedItem.completedAt = completedItem.checked ? new Date() : null;
-  
-    if (completedItem.checked) {
-      // If task is checked (completed), add it to the completedItems state
-      onSetCompletedItems([...completedItems, completedItem]);
-    } else {
-      // If task is not checked (completed), add it to the shitListTasks state
-      setShitListTasks([...shitListTasks, completedItem]);
+      onAddToDo && onAddToDo(text); // Call the onAddToDo function to add the new task
+      setToDo(''); // Clear the input box after adding the task
     }
-  
-    setTasks(updatedToDoList);
-  
-    const id = completedItem.id;
-    fetch(`http://localhost:8003/users/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(completedItem),
-    });
   }
+
   return (
     <div id="toDoList">
       <h2>To Do List</h2>
       <form onSubmit={handleSubmit}>
+        {/* Input field to enter the new task */}
         <input type="text" name="todo" value={toDo} onChange={(e) => setToDo(e.target.value)} />
+        {/* Button to submit the new task */}
         <button type="submit">Add</button>
       </form>
       {tasks.length > 0 ? (
         <ul>
+          {/* Map through the tasks and render the ones that are not checked */}
           {tasks.map((task, index) => (
-            
-            <li key={index}>
-              <input
-                type="checkbox"
-                checked={task.checked}
-                onChange={() => handleCheckboxChange(index)}
-              />
-              {task.text}
-            </li>
+            task.checked ? null : (
+              <li key={index}>
+                {/* Checkbox to mark the task as completed */}
+                <input
+                  type="checkbox"
+                  onChange={() => handleCheckboxChange(index) && task.checked}
+                />
+                {task.text}
+              </li>
+            )
           ))}
         </ul>
       ) : (
-        <p>No tasks to display.</p>
+        <p>no task to display</p>
       )}
     </div>
   );
