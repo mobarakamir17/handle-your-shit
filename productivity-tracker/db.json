@@ -3,26 +3,32 @@
     {
       "id": 1,
       "text": "eat",
-      "checked": false,
-      "completedAt": "2023-07-20T21:48:43.967Z"
+      "checked": true,
+      "completedAt": "2023-07-21T15:09:11.308Z"
     },
     {
       "id": 2,
       "text": "play",
-      "checked": false,
-      "completedAt": "2023-07-20T21:48:44.512Z"
+      "checked": true,
+      "completedAt": "2023-07-21T15:09:11.715Z"
     },
     {
       "text": "make",
-      "checked": false,
+      "checked": true,
       "id": 3,
-      "completedAt": "2023-07-20T21:48:44.913Z"
+      "completedAt": "2023-07-21T15:09:12.792Z"
     },
     {
       "text": "homework",
       "checked": false,
       "id": 4,
-      "completedAt": "2023-07-20T21:48:45.268Z"
+      "completedAt": "2023-07-21T06:09:02.723Z"
+    },
+    {
+      "text": "make bed",
+      "checked": false,
+      "id": 5,
+      "completedAt": "2023-07-21T06:09:03.006Z"
     }
   ]
 }
